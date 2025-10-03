@@ -1,17 +1,43 @@
-geopandas>=0.14.0
+# Fire Fingerprinting System Requirements
+# Optimized for NVIDIA RTX 3080 GPU
+
+# Core Data Processing
+numpy>=1.24.0,<2.0.0  # NumPy 2.x causes compatibility issues
 pandas>=2.0.0
-numpy>=1.24.0
+geopandas>=0.14.0
+shapely>=2.0.0
+rasterio>=1.3.0
+
+# Visualization
 matplotlib>=3.7.0
 seaborn>=0.12.0
-folium>=0.14.0
-opencv-python>=4.8.0
-scikit-image>=0.21.0
-tensorflow>=2.13.0
-pillow>=10.0.0
-rasterio>=1.3.0
-shapely>=2.0.0
-scikit-learn>=1.3.0
-streamlit>=1.28.0
 plotly>=5.15.0
+folium>=0.14.0
+
+# Computer Vision & Image Processing
+opencv-python>=4.8.0
+pillow>=10.0.0
+scikit-image>=0.21.0
+
+# Machine Learning & Deep Learning
+tensorflow>=2.13.0  # GPU support with CUDA 11.8+ and cuDNN 8.6+
+scikit-learn>=1.3.0
+
+# GPU Acceleration (optional but recommended for RTX 3080)
+# Install these separately if needed:
+# tensorflow-gpu>=2.13.0  # Explicit GPU version
+# cudatoolkit>=11.8  # CUDA toolkit
+# cudnn>=8.6  # cuDNN for TensorFlow
+
+# Utilities
 tqdm>=4.65.0
 joblib>=1.3.0
+
+# Optional: Web Dashboard
+streamlit>=1.28.0
+
+# Note: For RTX 3080 GPU support, ensure you have:
+# - NVIDIA GPU Driver 450.80.02+ (Linux) or 452.39+ (Windows)
+# - CUDA Toolkit 11.2 or higher
+# - cuDNN 8.1 or higher
+# Install TensorFlow GPU: pip install tensorflow[and-cuda]

@@ -1,0 +1,32 @@
+{
+  "fire_type": {
+    "Bushfire": 0,
+    "Prescribed Burn": 1,
+    "Prescribed burn": 2,
+    "Unknown": 3
+  },
+  "ignition_cause": {
+    "Accidental": 0,
+    "Incendiary": 1,
+    "NOT DETERMINED": 2,
+    "Natural": 3,
+    "OTHER": 4,
+    "Undetermined": 5,
+    "Other": 6
+  },
+  "state": {
+    "ACT (Australian Capital Territory)": 0,
+    "NSW (New South Wales)": 1,
+    "QLD (Queensland)": 2,
+    "SA (South Australia)": 3,
+    "TAS (Tasmania)": 4,
+    "VIC (Victoria)": 5,
+    "WA (Western Australia)": 6
+  },
+  "size_category": {
+    "Small": 0,
+    "Medium": 1,
+    "Large": 2,
+    "Very Large": 3
+  }
+}
