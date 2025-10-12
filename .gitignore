@@ -1,0 +1,110 @@
+# FirePrint v1.0 - Git Ignore File
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
+# TensorFlow / Keras
+*.h5
+*.hdf5
+*.keras
+*.pb
+saved_model/
+logs/
+tensorboard/
+
+# Data Files (large datasets)
+*.gdb/
+*.csv
+*.npy
+*.pkl
+*.json
+data/Bushfire_Boundaries_Historical_2024_V3.gdb/
+data/raw/
+data/processed/
+data/cache/
+
+# Model Files (too large for git)
+models/*.h5
+models/*.keras
+models/*.pb
+demo_training_models/
+*.ckpt
+
+# Output Files
+outputs/*.png
+outputs/*.jpg
+outputs/*.pdf
+outputs/*.csv
+outputs/*.npy
+assets/plots/
+assets/temp/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Logs
+*.log
+logs/
+*.out
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
+*.bak
+
+# Keep important files
+!assets/*.png
+!docs/images/*.png
+!.github/
+!requirements.txt
+!README.md
+!LICENSE
+!version.yaml
+
+# Allow example outputs
+!assets/demo_*.png
+!assets/example_*.png
+
