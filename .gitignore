@@ -1,6 +1,27 @@
-# FirePrint v1.0 - Git Ignore File
+# FirePrint Git Ignore Configuration
+# ===================================
+# This configuration excludes data files but includes the FirePrint-v1.0 package
 
+# =======================
+# Data Directory (EXCLUDED)
+# =======================
+# Exclude all data files - they're too large for git
+data/
+!data/README.md
+
+# Specifically exclude large files
+*.gdb/
+*.gdb
+*.npy
+*.pkl
+*.h5
+*.keras
+*.tfevents.*
+
+# =======================
 # Python
+# =======================
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -18,93 +39,178 @@ parts/
 sdist/
 var/
 wheels/
-pip-wheel-metadata/
 share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
 MANIFEST
 
-# Virtual Environment
+# Virtual environments
 venv/
 ENV/
 env/
 .venv
+.conda/
 
+# =======================
 # Jupyter Notebook
+# =======================
 .ipynb_checkpoints
-*.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
 
-# TensorFlow / Keras
-*.h5
-*.hdf5
-*.keras
-*.pb
-saved_model/
-logs/
-tensorboard/
+# Jupyter Notebook outputs (optional - comment out if you want to keep outputs)
+# *-checkpoint.ipynb
 
-# Data Files (large datasets)
-*.gdb/
-*.csv
-*.npy
-*.pkl
-*.json
-data/Bushfire_Boundaries_Historical_2024_V3.gdb/
-data/raw/
-data/processed/
-data/cache/
-
-# Model Files (too large for git)
-models/*.h5
-models/*.keras
-models/*.pb
-demo_training_models/
-*.ckpt
-
-# Output Files
-outputs/*.png
-outputs/*.jpg
-outputs/*.pdf
-outputs/*.csv
-outputs/*.npy
-assets/plots/
-assets/temp/
-
-# IDE
+# =======================
+# IDEs and Editors
+# =======================
+# VSCode
 .vscode/
+*.code-workspace
+
+# PyCharm
 .idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# =======================
+# OS Files
+# =======================
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+
+# =======================
+# Logs and Databases
+# =======================
+*.log
+*.sql
+*.sqlite
+*.db
+
+# TensorFlow logs
+logs/
+*.tfevents.*
+
+# =======================
+# Temporary Files
+# =======================
+*.tmp
+*.temp
 *.swp
 *.swo
-*~
-.DS_Store
-
-# OS
-Thumbs.db
-.DS_Store
-desktop.ini
-
-# Logs
-*.log
-logs/
-*.out
-
-# Temporary Files
-tmp/
-temp/
-*.tmp
 *.bak
+*.backup
+*~
 
-# Keep important files
-!assets/*.png
-!docs/images/*.png
-!.github/
-!requirements.txt
-!README.md
-!LICENSE
-!version.yaml
+# =======================
+# Model and Training Files
+# =======================
+# Model checkpoints and weights (too large for git)
+*.weights
+*.pt
+*.pth
+checkpoints/
 
-# Allow example outputs
-!assets/demo_*.png
-!assets/example_*.png
+# Training artifacts
+training_logs/
+tensorboard_logs/
+
+# =======================
+# Large Data Files
+# =======================
+# CSV files with data (keep small config CSVs)
+# Uncomment if you want to exclude all CSVs:
+# *.csv
+
+# NumPy arrays
+*.npz
+
+# Pickle files with large data
+
+# HDF5 files
+
+# =======================
+# Documentation Build
+# =======================
+docs/_build/
+docs/_static/
+docs/_templates/
+
+# =======================
+# Testing
+# =======================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# =======================
+# Project Specific
+# =======================
+# Exclude processed data directories
+processed_data/
+demo_processed_data/
+demo_training_models/
+demo_similarity_search/
+fire_feature_database/
+shared_functions/
+
+# Output files (large results)
+outputs/*.npy
+outputs/*.pkl
+
+# But keep README files
+!outputs/README.md
+!assets/README.md
+
+# =======================
+# INCLUDED: FirePrint-v1.0
+# =======================
+# The main package directory IS tracked
+# All files in FirePrint-v1.0/ will be committed EXCEPT those matching patterns above
+
+# =======================
+# Git Attributes
+# =======================
+# Handled by .gitattributes (if exists)
+
+# =======================
+# Environment Variables
+# =======================
+.env
+.env.local
+.env.*.local
+
+# =======================
+# Archives
+# =======================
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# =======================
+# Config overrides
+# =======================
+# Personal config overrides (if you create them)
+config.local.yaml
+config.override.yaml
 

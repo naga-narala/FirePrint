@@ -1,0 +1,244 @@
+# FirePrint Configuration File
+# Update all paths in one place - notebooks will read from this file
+# ============================================================
+
+# Project Information
+project:
+  name: "FirePrint"
+  version: "1.0"
+  description: "Fire Fingerprinting System using CNN and Computer Vision"
+
+# Directory Paths
+# ============================================================
+paths:
+  # Root directories (relative to FirePrint-v1.0/)
+  root: "."
+  data_root: "../data"
+  outputs_root: "./outputs"
+  assets_root: "./assets"
+  notebooks_root: "./notebooks"
+  
+  # Source Data
+  source_data:
+    # GDB database path - UPDATE THIS for your environment
+    bushfire_gdb: "../data/Bushfire_Boundaries_Historical_2024_V3.gdb"
+    bushfire_layer: "Bushfire_Boundaries_Historical"
+  
+  # Processed Data Directories
+  processed_data:
+    demo: "../data/demo_processed_data"
+    main: "../data/processed_data"
+    feature_database: "../data/fire_feature_database"
+    shared_functions: "../data/shared_functions"
+  
+  # Model Directories
+  models:
+    demo_training: "../data/demo_training_models"
+    production: "../data/production_models"
+    checkpoints: "../data/demo_training_models/checkpoints"
+    logs: "../data/demo_training_models/logs"
+  
+  # Search Engines
+  search:
+    demo: "../data/demo_similarity_search"
+    production: "../data/production_similarity_search"
+  
+  # Output Files
+  outputs:
+    demo_features_csv: "./outputs/demo_fire_features.csv"
+    demo_features_normalized: "./outputs/demo_fire_features_normalized.csv"
+    demo_cnn_features: "./outputs/demo_cnn_features.npy"
+    analysis_plots: "./assets"
+
+# File Names
+# ============================================================
+files:
+  # Processed data files
+  fingerprints: "fingerprints.npy"
+  labels: "labels.pkl"
+  metadata: "metadata.pkl"
+  encoders: "encoders.json"
+  processing_stats: "processing_stats.json"
+  
+  # Feature files
+  raw_features: "raw_features.csv"
+  normalized_features: "normalized_features.csv"
+  feature_metadata: "feature_metadata.json"
+  feature_statistics: "feature_statistics.json"
+  fire_metadata: "fire_metadata.csv"
+  
+  # Model files
+  best_model: "best_model.keras"
+  trained_model: "demo_trained_model.keras"
+  training_history: "demo_training_history.json"
+  
+  # Search files
+  geometric_search: "geometric_search.pkl"
+  cnn_search: "cnn_search.pkl"
+  combined_search: "combined_search.pkl"
+  geometric_scaler: "geometric_scaler.pkl"
+  cnn_scaler: "cnn_scaler.pkl"
+  combined_scaler: "combined_scaler.pkl"
+  search_metadata: "search_metadata.json"
+
+# Processing Parameters
+# ============================================================
+processing:
+  # Fingerprint generation
+  image_size: 224
+  
+  # Batch processing
+  batch_size: 32
+  chunk_size: 10000
+  
+  # Quality filters
+  min_area: 100  # minimum area in square meters
+  max_complexity: 1000  # maximum number of vertices
+  
+  # Multi-processing
+  num_workers: 4
+  use_multiprocessing: false  # Set to true for large datasets
+
+# Model Architecture
+# ============================================================
+model:
+  # CNN Architecture
+  architecture: "EfficientNetB0"
+  input_shape: [224, 224, 1]
+  
+  # Training parameters
+  initial_learning_rate: 0.001
+  batch_size: 32
+  epochs: 50
+  validation_split: 0.2
+  
+  # Tasks and outputs
+  tasks:
+    - name: "state"
+      type: "classification"
+    - name: "season"
+      type: "classification"
+    - name: "fire_type"
+      type: "classification"
+  
+  # Early stopping
+  patience: 5
+  min_delta: 0.001
+
+# Feature Extraction
+# ============================================================
+features:
+  # Geometric features
+  geometric:
+    - "area"
+    - "perimeter"
+    - "compactness"
+    - "circularity"
+    - "convexity"
+    - "solidity"
+    - "extent"
+    - "fractal_dimension"
+    - "elongation"
+    - "rectangularity"
+  
+  # Shape features
+  shape:
+    - "num_holes"
+    - "num_vertices"
+    - "boundary_complexity"
+    - "axis_ratio"
+    - "mean_curvature"
+    - "curvature_variance"
+  
+  # Texture features (from fingerprint)
+  texture:
+    - "texture_contrast"
+    - "texture_dissimilarity"
+    - "texture_homogeneity"
+    - "texture_energy"
+    - "texture_correlation"
+  
+  # Distance transform features
+  distance:
+    - "distance_mean"
+    - "distance_std"
+    - "distance_max"
+    - "skeleton_length"
+
+# Similarity Search
+# ============================================================
+similarity:
+  # Search parameters
+  n_neighbors: 10
+  metric: "euclidean"
+  algorithm: "auto"
+  
+  # Clustering
+  clustering:
+    method: "kmeans"
+    n_clusters: 5
+    random_state: 42
+  
+  # Feature weights (for combined search)
+  weights:
+    geometric: 0.4
+    cnn: 0.6
+
+# Visualization
+# ============================================================
+visualization:
+  # Plot settings
+  figure_size: [12, 8]
+  dpi: 300
+  style: "default"
+  color_palette: "husl"
+  
+  # Gallery settings
+  gallery_cols: 5
+  gallery_rows: 4
+  thumbnail_size: 100
+
+# Logging
+# ============================================================
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  save_logs: true
+  log_file: "fireprint.log"
+
+# Environment
+# ============================================================
+environment:
+  # Python environment
+  conda_env: "rip_gpu"
+  python_version: "3.11"
+  
+  # Required packages
+  required_packages:
+    - "numpy>=1.24.3,<2.0"
+    - "pandas>=2.0.0"
+    - "geopandas>=0.13.0"
+    - "shapely>=2.0.0"
+    - "rasterio>=1.3.0"
+    - "tensorflow>=2.13.0"
+    - "scikit-learn>=1.3.0"
+    - "matplotlib>=3.7.0"
+    - "seaborn>=0.12.0"
+    - "opencv-python>=4.8.0"
+    - "pyyaml>=6.0"
+
+# Notes
+# ============================================================
+notes: |
+  This configuration file centralizes all paths and parameters for the FirePrint system.
+  
+  To update paths for your environment:
+  1. Update the 'bushfire_gdb' path under paths.source_data
+  2. Update data_root if your data folder is in a different location
+  3. All other paths are relative and should work automatically
+  
+  When processing a new dataset:
+  1. Change paths.processed_data.demo to your new output directory
+  2. Update model paths if needed
+  3. All notebooks will automatically use the new paths when you load this config
+

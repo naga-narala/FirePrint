@@ -1,66 +1,83 @@
-# FirePrint v1.0 Git Attributes
+# FirePrint Git Attributes
+# ========================
 
-# Auto detect text files and perform LF normalization
+# Auto detect text files and normalize line endings to LF
 * text=auto
 
-# Source code
+# Python files
 *.py text eol=lf
+*.pyx text eol=lf
+*.pxd text eol=lf
+
+# Jupyter Notebooks
 *.ipynb text eol=lf
-*.md text eol=lf
-*.txt text eol=lf
+
+# Configuration files
 *.yaml text eol=lf
 *.yml text eol=lf
 *.json text eol=lf
+*.toml text eol=lf
+*.ini text eol=lf
+*.cfg text eol=lf
+
+# Documentation
+*.md text eol=lf
+*.rst text eol=lf
+*.txt text eol=lf
 
 # Scripts
 *.sh text eol=lf
+*.bash text eol=lf
+
+# Windows scripts
 *.bat text eol=crlf
+*.cmd text eol=crlf
 *.ps1 text eol=crlf
 
-# Documentation
-*.rst text eol=lf
-*.tex text eol=lf
-
-# Configuration
-.gitignore text eol=lf
-.gitattributes text eol=lf
-requirements*.txt text eol=lf
-
 # Binary files
+*.npy binary
+*.npz binary
+*.pkl binary
+*.pickle binary
+*.h5 binary
+*.hdf5 binary
+*.keras binary
+*.pb binary
+*.pt binary
+*.pth binary
+
+# Images
 *.png binary
 *.jpg binary
 *.jpeg binary
 *.gif binary
 *.ico binary
-*.mov binary
-*.mp4 binary
-*.mp3 binary
-*.flv binary
-*.fla binary
-*.swf binary
-*.gz binary
+*.svg text
+
+# Archives
 *.zip binary
+*.tar binary
+*.gz binary
+*.tgz binary
+*.rar binary
 *.7z binary
-*.ttf binary
-*.eot binary
-*.woff binary
-*.woff2 binary
-*.pyc binary
-*.pkl binary
-*.npy binary
-*.h5 binary
-*.hdf5 binary
-*.keras binary
 
-# Geodatabase files
-*.gdb/** binary
+# Databases
+*.db binary
+*.sqlite binary
+*.gdb binary
 
-# Jupyter notebooks - don't merge
-*.ipynb merge=union
+# Jupyter Notebook handling
+# Notebooks are text but may have large outputs
+*.ipynb linguist-documentation=false
+*.ipynb linguist-detectable=true
 
-# Large files tracking (for Git LFS if needed)
-*.h5 filter=lfs diff=lfs merge=lfs -text
-*.keras filter=lfs diff=lfs merge=lfs -text
-*.npy filter=lfs diff=lfs merge=lfs -text
-*.pkl filter=lfs diff=lfs merge=lfs -text
+# Mark certain files as generated (lower priority in diffs)
+*_pb2.py linguist-generated=true
+
+# Export ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/.github export-ignore
+/tests export-ignore
 
